@@ -1,5 +1,25 @@
 <resources>
     <string name="app_name">Calculadora</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cero">0</string>
+    <string name="doble_cero">00</string>
+    <string name="uno">1</string>
+    <string name="dos">2</string>
+    <string name="tres">3</string>
+    <string name="cuatro">4</string>
+    <string name="cinco">5</string>
+    <string name="seis">6</string>
+    <string name="siete">7</string>
+    <string name="ocho">8</string>
+    <string name="nueve">9</string>
+    <string name="suma">\u002B</string>
+    <string name="resta">\u2212</string>
+    <string name="multiplicacion">\u00D7</string>
+    <string name="division">\u00F7</string>
+    <string name="igual">\u003D</string>
+    <string name="punto_decimal">.</string>
+    <string name="mas_menos">\u00B1</string>
+    <string name="porcentaje">\u0025</string>
+    <string name="all_clear">AC</string>
+    
 </resources>
