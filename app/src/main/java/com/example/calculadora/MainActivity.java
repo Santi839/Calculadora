@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView navigation = findViewById(R.id.bottomNavigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationSelectedListener);
-
+        loadFragment(firstFragment);
 }
     private final BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -47,3 +47,4 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
 }
+
