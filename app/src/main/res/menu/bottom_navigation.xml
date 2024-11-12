@@ -2,16 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/firstFragment"
-        android:icon="@android:drawable/ic_input_add"
-        android:title="Primero"/>
+        android:icon="@drawable/ic_operaciones"
+        android:title="Calculadora"/>
 
     <item
         android:id="@+id/secondFragment"
-        android:icon="@android:drawable/ic_input_delete"
-        android:title="Segundo"/>
+        android:icon="@drawable/ic_area"
+        android:title="Áreas"/>
 
     <item
         android:id="@+id/thirdFragment"
-        android:icon="@android:drawable/ic_dialog_info"
-        android:title="Tercero"/>
+        android:icon="@drawable/ic_volumen"
+        android:title="Volúmenes"/>
 </menu>

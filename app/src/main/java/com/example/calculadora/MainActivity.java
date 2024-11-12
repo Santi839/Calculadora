@@ -4,7 +4,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -13,17 +16,15 @@ import com.google.android.material.button.MaterialButton;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+import java.sql.SQLOutput;
 
-    TextView textEcuation, textInput;
-    MaterialButton botonMasMenos, botonPorcentaje;
-    MaterialButton botonMultiplicar, botonDividir, botonSumar, botonRestar, botonIgual;
-    MaterialButton botonDobleCero, botonCero, botonUno, botonDos, botonTres, botonCuatro, botonCinco, botonSeis, botonSiete, botonOcho, botonNueve;
-    MaterialButton botonAC, botonPunto;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     FirstFragment firstFragment = new FirstFragment();
     SecondFragment secondFragment = new SecondFragment();
     ThirdFragment thirdFragment = new ThirdFragment();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +36,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         LayoutInflater inflater = LayoutInflater.from(this);
         View inflatedView1 = inflater.inflate(R.layout.fragment_first, null);
-        textEcuation = inflatedView1.findViewById(R.id.textEcuacion);
-        textInput = inflatedView1.findViewById(R.id.textInput);
+
+
+
+
+
 
         loadFragment(firstFragment);
     }
@@ -59,9 +63,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     };
 
     public void loadFragment(Fragment fragment) {
+
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frameContainer, fragment);
         transaction.commit();
+
     }
     void asignarId (MaterialButton btn, int id){
         btn = findViewById(id);
@@ -69,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     @Override
     public void onClick(View view) {
+/*
         MaterialButton button = (MaterialButton) view;
         String buttonText = button.getText().toString();
         String datos_a_Calcular = textInput.getText().toString();
@@ -82,7 +89,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         datos_a_Calcular = datos_a_Calcular+buttonText;
         textInput.setText(datos_a_Calcular);
+        textInput.getText().toString();
+        switch (buttonText) {
+            case "AC":
+                textInput.setText("");
+                textEcuation.setText("0");
+                valorPrimero = 0.0;
+                valorSegundo = 0.0;
+                operadorActual = "";
+                break;
+            case "=":
+                valorSegundo = Double.parseDouble(textInput.getText().toString());
+                double resultado = calcularResultado(valorPrimero, valorSegundo, operadorActual);
+                textInput.setText(String.valueOf(resultado));
+                textEcuation.setText(valorPrimero + " " + operadorActual + " " + valorSegundo + " = " + resultado);
+                break;
+            case "+":
+            case "-":
+            case "*":
+            case "/":
+                    operadorActual = buttonText;
+                    valorPrimero = Double.parseDouble(textInput.getText().toString()); textInput.setText("");
+                    break;
+                default:
+                    datos_a_Calcular = datos_a_Calcular + buttonText; textInput.setText(datos_a_Calcular);
+                    break;
+        }
     }
+    public double calcularResultado(double valorPrimero, double valorSegundo, String operador){
+        switch (operador) {
+        case "+":
+            return valorPrimero + valorSegundo;
+        case "-":
+            return valorPrimero - valorSegundo;
+        case "*":
+            return valorPrimero * valorSegundo;
+        case "/":
+            return valorPrimero / valorSegundo;
+        default:
+            return 0.0;
+        }
 
+ */
+    }
 }
-

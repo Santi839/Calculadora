@@ -46,7 +46,7 @@
     </TextView>
 
     <TextView
-        android:id="@+id/textEcuacion"
+        android:id="@+id/textEcuation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -79,7 +79,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="75dp">
+        android:layout_marginBottom="80dp">
 
         <TableRow android:layout_weight="1">
 
@@ -89,9 +89,9 @@
                 android:text="@string/all_clear"/>
 
             <Button
-                android:id="@+id/botonMasMenos"
+                android:id="@+id/botonC"
                 style="@style/ActionButton"
-                android:text="@string/mas_menos"/>
+                android:text="C"/>
 
             <Button
                 android:id="@+id/botonPorcentaje"
@@ -101,7 +101,7 @@
             <Button
                 android:id="@+id/botonDivision"
                 style="@style/ActionButton"
-                android:text="@string/division"/>
+                android:text="/"/>
 
         </TableRow>
 
@@ -125,7 +125,7 @@
             <Button
                 android:id="@+id/botonMultiplicacion"
                 style="@style/ActionButton"
-                android:text="@string/multiplicacion"/>
+                android:text="*"/>
 
         </TableRow>
 
@@ -149,7 +149,7 @@
             <Button
                 android:id="@+id/botonResta"
                 style="@style/ActionButton"
-                android:text="@string/resta"/>
+                android:text="-"/>
 
         </TableRow>
 
