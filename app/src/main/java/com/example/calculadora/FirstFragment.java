@@ -130,70 +130,79 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
         String datosPrevios = textInput.getText().toString();
         datosPrevios = ("0".equals(datosPrevios)) ? "" : datosPrevios;
 
-
-        switch (buttonText) {
-            case "AC":
-                textInput.setText("0");
-                textEcuation.setText("");
-                break;
-            case "00":
-            case "0":
-            case "1":
-            case "2":
-            case "3":
-            case "4":
-            case "5":
-            case "6":
-            case "7":
-            case "8":
-            case "9":
-                textInput.setText(datosPrevios + buttonText);
-                break;
-            case "+":
-            case "-":
-            case "*":
-            case "/":
-
-
-                if (datosPrevios.contains(".")){
-                    valorPrimeroD = parseDouble(datosPrevios, 0);
-                    operadorActual = buttonText;
-                    textEcuation.setText(valorPrimeroD + " " + buttonText + " ");
+        try {
+            switch (buttonText) {
+                case "AC":
                     textInput.setText("0");
-                }else {
-                    valorPrimero = parseInt(datosPrevios, 0);
-                    operadorActual = buttonText;
-                    textEcuation.setText(valorPrimero + " " + buttonText + " ");
-                    textInput.setText("0");
-                }
-                break;
-            case "=":
-                /*
-                if (datosPrevios.contains(".")){
-                    valorSegundoD = parseDouble(datosPrevios, 0.0);
-                    textEcuation.setText(valorPrimeroD + " " + operadorActual + " " + valorSegundoD);
-                    double resultado = calcularResultadoD(valorPrimeroD, valorSegundoD, operadorActual);
-                    textInput.setText(resultado + "");
-                }else {
-                    valorSegundo = parseInt(datosPrevios, 0);
-                    textEcuation.setText(valorPrimero + " " + operadorActual + " " + valorSegundo);
-                    int resultado = calcularResultado(valorPrimero, valorSegundo, operadorActual);
-                    textInput.setText(resultado + "");
-                }
-
-                 */
-                break;
-            case "C":
-                String entrada = textInput.getText().toString();
-                textInput.setText(borrarCaracter(entrada));
-                break;
-            case ".":
-                if (!datosPrevios.contains(".")) {
+                    textEcuation.setText("");
+                    break;
+                case "00":
+                case "0":
+                case "1":
+                case "2":
+                case "3":
+                case "4":
+                case "5":
+                case "6":
+                case "7":
+                case "8":
+                case "9":
                     textInput.setText(datosPrevios + buttonText);
-                }
-                break;
+                    break;
+                case "+":
+                case "-":
+                case "*":
+                case "/":
+                    if (datosPrevios.contains(".")) {
+                        valorPrimeroD = parseDouble(datosPrevios, 0);
+                        operadorActual = buttonText;
+                        textEcuation.setText(valorPrimeroD + " " + buttonText + " ");
+                        textInput.setText("0");
+                    } else {
+                        valorPrimero = parseInt(datosPrevios, 0);
+                        operadorActual = buttonText;
+                        textEcuation.setText(valorPrimero + " " + buttonText + " ");
+                        textInput.setText("0");
+                    }
+                    break;
+                case "=":
 
-        }
+                    if (datosPrevios.contains(".") || valorPrimeroD != 0) {
+                        valorSegundoD = parseDouble(datosPrevios, 0.0);
+                        textEcuation.setText(valorPrimeroD + " " + operadorActual + " " + valorSegundoD);
+                        double resultado = calcularResultadoD(valorPrimeroD, valorSegundoD, operadorActual);
+                        textInput.setText(resultado + "");
+                        valorPrimeroD = 0.0;
+                        valorSegundoD = 0.0;
+
+                    } else {
+                        valorSegundo = parseInt(datosPrevios, 0);
+                        textEcuation.setText(valorPrimero + " " + operadorActual + " " + valorSegundo);
+                        int resultado = calcularResultado(valorPrimero, valorSegundo, operadorActual);
+                        textInput.setText(resultado + "");
+                        valorPrimero = 0;
+                        valorSegundo = 0;
+
+                    }
+
+                    break;
+                case "C":
+                    String entrada = textInput.getText().toString();
+                    textInput.setText(borrarCaracter(entrada));
+                    break;
+                case ".":
+                    if (!datosPrevios.contains(".")) {
+                        textInput.setText(datosPrevios + buttonText);
+                    }
+                    break;
+            }
+        }catch (ArithmeticException e) {
+            Toast.makeText(getContext(), "Operación no permitida: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            textInput.setText("0");
+            textEcuation.setText("");
+            }
+
+
         /*
         //@string/division
         //@string/resta
@@ -270,18 +279,32 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
 
 
     public int calcularResultado(int valorPrimero, int valorSegundo, String operadorActual) {
+        int operacion;
         switch (operadorActual) {
             case "+":
-                return valorPrimero + valorSegundo;
+                operacion = valorPrimero + valorSegundo;
+                break;
             case "-":
-                return valorPrimero - valorSegundo;
+                operacion = valorPrimero - valorSegundo;
+                break;
             case "*":
-                return valorPrimero * valorSegundo;
+                operacion = valorPrimero * valorSegundo;
+                break;
             case "/":
-                return valorPrimero / valorSegundo;
+                if (valorSegundo == 0){
+                    operacion = valorPrimero / valorSegundo;
+                    Toast.makeText(null, "No es posible esta operación", Toast.LENGTH_SHORT).show();
+                }else{
+                    operacion = valorPrimero / valorSegundo;
+                }
+                if (valorPrimero==0 && operadorActual=="/" && valorSegundo==0){
+                    throw new ArithmeticException("División por cero no permitida");
+                }
+                break;
             default:
-                return 0;
+                operacion=0;
         }
+        return operacion;
     }
 
     public double calcularResultadoD(double valorPrimeroD, double valorSegundoD, String operadorActual) {
@@ -297,7 +320,12 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
                 operacion = valorPrimeroD * valorSegundoD;
                 break;
             case "/":
-                operacion = valorPrimeroD / valorSegundoD;
+                if (valorSegundoD == 0.0){
+                    operacion = valorPrimeroD / valorSegundoD;
+                    throw new ArithmeticException("División por cero no permitida");
+                }else{
+                    operacion = valorPrimeroD / valorSegundoD;
+                }
                 break;
             default:
                 operacion = 0.0;
