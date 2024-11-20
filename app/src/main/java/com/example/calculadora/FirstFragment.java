@@ -2,8 +2,9 @@ package com.example.calculadora;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,20 +12,15 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FirstFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class FirstFragment extends Fragment implements View.OnClickListener {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     TextView textEcuation, textInput;
     Button botonUno, botonDos, botonTres, botonCuatro, botonCinco, botonSeis, botonSiete, botonOcho, botonNueve, botonCero, botonDobleCero, botonSuma, botonResta, botonDivision, botonMultiplicion, botonIgual, botonAC, botonPunto, botonPorcentaje, botonC;
     View view;
+    static AppCompatImageView imageNightMode;
     private String operadorActual = "";
     private int valorPrimero = 0;
     private int valorSegundo = 0;
@@ -32,24 +28,12 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
     private double valorPrimeroD = 0.0;
     private double valorSegundoD = 0.0;
 
-
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     public FirstFragment() {
-        // Required empty public constructor
-    }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FirstFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+    }
     public static FirstFragment newInstance(String param1, String param2) {
         FirstFragment fragment = new FirstFragment();
         Bundle args = new Bundle();
@@ -58,7 +42,6 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
         fragment.setArguments(args);
         return fragment;
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,15 +51,12 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_first, container, false);
-        // Inflate the layout for this fragment
         textEcuation = view.findViewById(R.id.textEcuation);
         textInput = view.findViewById(R.id.textInput);
-
         botonCero = view.findViewById(R.id.botonCero);
         botonDobleCero = view.findViewById(R.id.botonDobleCero);
         botonUno = view.findViewById(R.id.botonUno);
@@ -97,7 +77,6 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
         botonC = view.findViewById(R.id.botonC);
         botonPorcentaje = view.findViewById(R.id.botonPorcentaje);
         botonPunto = view.findViewById(R.id.botonPuntoDecimal);
-
         botonCero.setOnClickListener(this);
         botonDobleCero.setOnClickListener(this);
         botonUno.setOnClickListener(this);
@@ -119,10 +98,9 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
         botonC.setOnClickListener(this);
         botonPorcentaje.setOnClickListener(this);
         botonPunto.setOnClickListener(this);
-
+        imageNightMode.setOnClickListener(this);
         return view;
     }
-
     @Override
     public void onClick(View view) {
         Button button = (Button) view;
@@ -151,6 +129,7 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
                     break;
                 case "+":
                 case "-":
+                case "%":
                 case "*":
                 case "/":
                     if (datosPrevios.contains(".")) {
@@ -168,6 +147,8 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
                 case "=":
 
                     if (datosPrevios.contains(".") || valorPrimeroD != 0) {
+                        String primerEntero = String.valueOf(valorPrimero);
+                        valorPrimeroD = parseDouble(primerEntero,0.0);
                         valorSegundoD = parseDouble(datosPrevios, 0.0);
                         textEcuation.setText(valorPrimeroD + " " + operadorActual + " " + valorSegundoD);
                         double resultado = calcularResultadoD(valorPrimeroD, valorSegundoD, operadorActual);
@@ -195,60 +176,17 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
                         textInput.setText(datosPrevios + buttonText);
                     }
                     break;
+                case "imageNightMode":
+                    //cambiarModoNoche();
+                    //ponerIndicadorModoNoche();
+                    break;
+
             }
         }catch (ArithmeticException e) {
             Toast.makeText(getContext(), "Operación no permitida: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             textInput.setText("0");
             textEcuation.setText("");
             }
-
-
-        /*
-        //@string/division
-        //@string/resta
-        //@string/multiplicacion
-
-        if (buttonText.equals("AC")) {
-            textInput.setText("");
-            textEcuation.setText("0");
-            return;
-        }
-        if (buttonText.equals("=")) {
-            textInput.setText(textEcuation.getText());
-            return;
-        }
-        datos_a_Calcular = datos_a_Calcular + buttonText;
-        textInput.setText(datos_a_Calcular);
-        textInput.getText().toString();
-        switch (buttonText) {
-            case "AC":
-                textInput.setText("");
-                textEcuation.setText("0");
-                valorPrimero = 0.0;
-                valorSegundo = 0.0;
-                operadorActual = "";
-                break;
-            case "=":
-                valorSegundo = Double.parseDouble(textInput.getText().toString());
-                double resultado = calcularResultado(valorPrimero, valorSegundo, operadorActual);
-                textInput.setText(String.valueOf(resultado));
-                textEcuation.setText(valorPrimero + " " + operadorActual + " " + valorSegundo + " = " + resultado);
-                break;
-            case "+":
-            case "-":
-            case "*":
-            case "/":
-                operadorActual = buttonText;
-                valorPrimero = Double.parseDouble(textInput.getText().toString());
-                textInput.setText("");
-                break;
-            default:
-                datos_a_Calcular = datos_a_Calcular + buttonText;
-                textEcuation.setText(datos_a_Calcular);
-                break;
-        }
-
-         */
     }
 
     private static int parseInt(String text, int defValue) {
@@ -301,6 +239,16 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
                     throw new ArithmeticException("División por cero no permitida");
                 }
                 break;
+            case "%":
+                if (valorSegundo == 0){
+                    int valores = valorPrimero * valorSegundo;
+                    operacion = valores/100;
+                    Toast.makeText(getContext(), "No es posible esta operación", Toast.LENGTH_SHORT).show();
+                }else{
+                    int valores = valorPrimero * valorSegundo;
+                    operacion = valores/100;
+                }
+
             default:
                 operacion=0;
         }
@@ -327,10 +275,34 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
                     operacion = valorPrimeroD / valorSegundoD;
                 }
                 break;
+            case "%":
+                if (valorSegundoD == 0){
+                    double valores = valorPrimeroD * valorSegundoD;
+                    operacion = valores/100;
+                    Toast.makeText(null, "No es posible esta operación", Toast.LENGTH_SHORT).show();
+                }else{
+                    double valores = valorPrimeroD * valorSegundoD;
+                    operacion = valores/100;
+                }
             default:
                 operacion = 0.0;
                 break;
         }
         return operacion;
+    }
+
+    private void cambiarModoNoche(){
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+    }
+    private void ponerIndicadorModoNoche(){
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+            FirstFragment.imageNightMode.setImageResource(R.drawable.ic_sun);
+        }else{
+            FirstFragment.imageNightMode.setImageResource(R.drawable.ic_moon);
+        }
     }
 }
