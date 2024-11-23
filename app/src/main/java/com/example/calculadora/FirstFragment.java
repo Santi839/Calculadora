@@ -2,9 +2,13 @@ package com.example.calculadora;
 
 import android.os.Bundle;
 
+import androidx.annotation.OptIn;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.Fragment;
+import androidx.media3.common.util.Log;
+import androidx.media3.common.util.UnstableApi;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,264 +49,277 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-    }
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_first, container, false);
-        textEcuation = view.findViewById(R.id.textEcuation);
-        textInput = view.findViewById(R.id.textInput);
-        botonCero = view.findViewById(R.id.botonCero);
-        botonDobleCero = view.findViewById(R.id.botonDobleCero);
-        botonUno = view.findViewById(R.id.botonUno);
-        botonDos = view.findViewById(R.id.botonDos);
-        botonTres = view.findViewById(R.id.botonTres);
-        botonCuatro = view.findViewById(R.id.botonCuatro);
-        botonCinco = view.findViewById(R.id.botonCinco);
-        botonSeis = view.findViewById(R.id.botonSeis);
-        botonSiete = view.findViewById(R.id.botonSiete);
-        botonOcho = view.findViewById(R.id.botonOcho);
-        botonNueve = view.findViewById(R.id.botonNueve);
-        botonSuma = view.findViewById(R.id.botonSuma);
-        botonResta = view.findViewById(R.id.botonResta);
-        botonDivision = view.findViewById(R.id.botonDivision);
-        botonMultiplicion = view.findViewById(R.id.botonMultiplicacion);
-        botonIgual = view.findViewById(R.id.botonIgual);
-        botonAC = view.findViewById(R.id.botonAllClear);
-        botonC = view.findViewById(R.id.botonC);
-        botonPorcentaje = view.findViewById(R.id.botonPorcentaje);
-        botonPunto = view.findViewById(R.id.botonPuntoDecimal);
-        botonCero.setOnClickListener(this);
-        botonDobleCero.setOnClickListener(this);
-        botonUno.setOnClickListener(this);
-        botonDos.setOnClickListener(this);
-        botonTres.setOnClickListener(this);
-        botonCuatro.setOnClickListener(this);
-        botonCinco.setOnClickListener(this);
-        botonCinco.setOnClickListener(this);
-        botonSeis.setOnClickListener(this);
-        botonSiete.setOnClickListener(this);
-        botonOcho.setOnClickListener(this);
-        botonNueve.setOnClickListener(this);
-        botonSuma.setOnClickListener(this);
-        botonResta.setOnClickListener(this);
-        botonDivision.setOnClickListener(this);
-        botonMultiplicion.setOnClickListener(this);
-        botonIgual.setOnClickListener(this);
-        botonAC.setOnClickListener(this);
-        botonC.setOnClickListener(this);
-        botonPorcentaje.setOnClickListener(this);
-        botonPunto.setOnClickListener(this);
-        imageNightMode.setOnClickListener(this);
-        return view;
-    }
-    @Override
-    public void onClick(View view) {
-        Button button = (Button) view;
-        String buttonText = button.getText().toString();
-        String datosPrevios = textInput.getText().toString();
-        datosPrevios = ("0".equals(datosPrevios)) ? "" : datosPrevios;
 
-        try {
-            switch (buttonText) {
-                case "AC":
+
+        }
+
+    @OptIn(markerClass = UnstableApi.class)
+    @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            view = inflater.inflate(R.layout.fragment_first, container, false);
+            textEcuation = view.findViewById(R.id.textEcuation);
+            textInput = view.findViewById(R.id.textInput);
+            botonCero = view.findViewById(R.id.botonCero);
+            botonDobleCero = view.findViewById(R.id.botonDobleCero);
+            botonUno = view.findViewById(R.id.botonUno);
+            botonDos = view.findViewById(R.id.botonDos);
+            botonTres = view.findViewById(R.id.botonTres);
+            botonCuatro = view.findViewById(R.id.botonCuatro);
+            botonCinco = view.findViewById(R.id.botonCinco);
+            botonSeis = view.findViewById(R.id.botonSeis);
+            botonSiete = view.findViewById(R.id.botonSiete);
+            botonOcho = view.findViewById(R.id.botonOcho);
+            botonNueve = view.findViewById(R.id.botonNueve);
+            botonSuma = view.findViewById(R.id.botonSuma);
+            botonResta = view.findViewById(R.id.botonResta);
+            botonDivision = view.findViewById(R.id.botonDivision);
+            botonMultiplicion = view.findViewById(R.id.botonMultiplicacion);
+            botonIgual = view.findViewById(R.id.botonIgual);
+            botonAC = view.findViewById(R.id.botonAllClear);
+            botonC = view.findViewById(R.id.botonC);
+            botonPorcentaje = view.findViewById(R.id.botonPorcentaje);
+            botonPunto = view.findViewById(R.id.botonPuntoDecimal);
+            botonCero.setOnClickListener(this);
+            botonDobleCero.setOnClickListener(this);
+            botonUno.setOnClickListener(this);
+            botonDos.setOnClickListener(this);
+            botonTres.setOnClickListener(this);
+            botonCuatro.setOnClickListener(this);
+            botonCinco.setOnClickListener(this);
+            botonCinco.setOnClickListener(this);
+            botonSeis.setOnClickListener(this);
+            botonSiete.setOnClickListener(this);
+            botonOcho.setOnClickListener(this);
+            botonNueve.setOnClickListener(this);
+            botonSuma.setOnClickListener(this);
+            botonResta.setOnClickListener(this);
+            botonDivision.setOnClickListener(this);
+            botonMultiplicion.setOnClickListener(this);
+            botonIgual.setOnClickListener(this);
+            botonAC.setOnClickListener(this);
+            botonC.setOnClickListener(this);
+            botonPorcentaje.setOnClickListener(this);
+            botonPunto.setOnClickListener(this);
+            if (imageNightMode != null) {
+                imageNightMode.setOnClickListener(this);
+            } else {
+                Log.e("FirstFragment", "imageNightMode es null");
+            }
+            return view;
+        }
+            @Override
+            public void onClick(View view) {
+                Button button = (Button) view;
+                String buttonText = button.getText().toString();
+                String datosPrevios = textInput.getText().toString();
+                datosPrevios = ("0".equals(datosPrevios)) ? "" : datosPrevios;
+
+                try {
+                    switch (buttonText) {
+                        case "AC":
+                            textInput.setText("0");
+                            textEcuation.setText("");
+                            valorPrimero = 0;
+                            valorSegundo = 0;
+                            valorPrimeroD = 0.0;
+                            valorSegundoD = 0.0;
+                            operadorActual = "";
+                            break;
+                        case "00":
+                        case "0":
+                        case "1":
+                        case "2":
+                        case "3":
+                        case "4":
+                        case "5":
+                        case "6":
+                        case "7":
+                        case "8":
+                        case "9":
+                            textInput.setText(datosPrevios + buttonText);
+                            break;
+                        case "+":
+                        case "-":
+                        case "%":
+                        case "*":
+                        case "/":
+                            if (datosPrevios.contains(".")) {
+                                valorPrimeroD = parseDouble(datosPrevios, 0.0);
+                                operadorActual = buttonText;
+                                textEcuation.setText(valorPrimeroD + " " + buttonText + " ");
+                                textInput.setText("0");
+                            } else {
+                                valorPrimero = parseInt(datosPrevios, 0);
+                                operadorActual = buttonText;
+                                textEcuation.setText(valorPrimero + " " + buttonText + " ");
+                                textInput.setText("0");
+                            }
+                            break;
+                        case "=":
+
+                            if (datosPrevios.contains(".") || valorPrimero != 0 || valorPrimeroD != 0.0) {
+                                String primerEntero = String.valueOf(valorPrimero);
+                                valorPrimeroD = parseDouble(primerEntero,0.0);
+                                valorSegundoD = parseDouble(datosPrevios, 0.0);
+                                textEcuation.setText(valorPrimeroD + " " + operadorActual + " " + valorSegundoD);
+                                double resultado = calcularResultadoD(valorPrimeroD, valorSegundoD, operadorActual);
+                                textInput.setText(resultado + "");
+                                valorPrimeroD = 0.0;
+                                valorSegundoD = 0.0;
+
+                            } else {
+                                valorSegundo = parseInt(datosPrevios, 0);
+                                textEcuation.setText(valorPrimero + " " + operadorActual + " " + valorSegundo);
+                                int resultado = calcularResultado(valorPrimero, valorSegundo, operadorActual);
+                                textInput.setText(resultado + "");
+                                valorPrimero = 0;
+                                valorSegundo = 0;
+
+                            }
+
+                            break;
+                        case "C":
+                            String entrada = textInput.getText().toString();
+                            textInput.setText(borrarCaracter(entrada));
+                            break;
+                        case ".":
+                            if (!datosPrevios.contains(".")) {
+                                textInput.setText(datosPrevios + buttonText);
+                            }
+                            break;
+                        case "imageNightMode":
+                            cambiarModoNoche();
+                            ponerIndicadorModoNoche();
+                            break;
+
+                    }
+                }catch (ArithmeticException e) {
+                    Toast.makeText(getContext(), "Operación no permitida: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     textInput.setText("0");
                     textEcuation.setText("");
-                    break;
-                case "00":
-                case "0":
-                case "1":
-                case "2":
-                case "3":
-                case "4":
-                case "5":
-                case "6":
-                case "7":
-                case "8":
-                case "9":
-                    textInput.setText(datosPrevios + buttonText);
-                    break;
-                case "+":
-                case "-":
-                case "%":
-                case "*":
-                case "/":
-                    if (datosPrevios.contains(".")) {
-                        valorPrimeroD = parseDouble(datosPrevios, 0);
-                        operadorActual = buttonText;
-                        textEcuation.setText(valorPrimeroD + " " + buttonText + " ");
-                        textInput.setText("0");
-                    } else {
-                        valorPrimero = parseInt(datosPrevios, 0);
-                        operadorActual = buttonText;
-                        textEcuation.setText(valorPrimero + " " + buttonText + " ");
-                        textInput.setText("0");
-                    }
-                    break;
-                case "=":
-
-                    if (datosPrevios.contains(".") || valorPrimeroD != 0) {
-                        String primerEntero = String.valueOf(valorPrimero);
-                        valorPrimeroD = parseDouble(primerEntero,0.0);
-                        valorSegundoD = parseDouble(datosPrevios, 0.0);
-                        textEcuation.setText(valorPrimeroD + " " + operadorActual + " " + valorSegundoD);
-                        double resultado = calcularResultadoD(valorPrimeroD, valorSegundoD, operadorActual);
-                        textInput.setText(resultado + "");
-                        valorPrimeroD = 0.0;
-                        valorSegundoD = 0.0;
-
-                    } else {
-                        valorSegundo = parseInt(datosPrevios, 0);
-                        textEcuation.setText(valorPrimero + " " + operadorActual + " " + valorSegundo);
-                        int resultado = calcularResultado(valorPrimero, valorSegundo, operadorActual);
-                        textInput.setText(resultado + "");
-                        valorPrimero = 0;
-                        valorSegundo = 0;
-
-                    }
-
-                    break;
-                case "C":
-                    String entrada = textInput.getText().toString();
-                    textInput.setText(borrarCaracter(entrada));
-                    break;
-                case ".":
-                    if (!datosPrevios.contains(".")) {
-                        textInput.setText(datosPrevios + buttonText);
-                    }
-                    break;
-                case "imageNightMode":
-                    //cambiarModoNoche();
-                    //ponerIndicadorModoNoche();
-                    break;
+                }
 
             }
-        }catch (ArithmeticException e) {
-            Toast.makeText(getContext(), "Operación no permitida: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-            textInput.setText("0");
-            textEcuation.setText("");
+
+            private static int parseInt(String text, int defValue) {
+                if ("".equals(text)) {
+                    return defValue;
+                } else {
+                    return Integer.parseInt(text);
+                }
             }
-    }
 
-    private static int parseInt(String text, int defValue) {
-        if ("".equals(text)) {
-            return defValue;
-        } else {
-            return Integer.parseInt(text);
-        }
-    }
+            private static double parseDouble(String text, double defValue) {
+                if ("".equals(text)) {
+                    return defValue;
+                } else {
+                    return Double.parseDouble(text);
+                }
+            }
 
-    private static double parseDouble(String text, double defValue) {
-        if ("".equals(text)) {
-            return defValue;
-        } else {
-            return Double.parseDouble(text);
-        }
-    }
-
-    private static String borrarCaracter(String entrada) {
-        if (entrada.length() > 0) {
-            entrada = entrada.substring(0, entrada.length() - 1);
-        }
-        if (entrada.length() == 0) {
-            entrada = "0";
-        }
-        return entrada;
-    }
+            private static String borrarCaracter(String entrada) {
+                if (entrada.length() > 0) {
+                    entrada = entrada.substring(0, entrada.length() - 1);
+                }
+                if (entrada.length() == 0) {
+                    entrada = "0";
+                }
+                return entrada;
+            }
 
 
-    public int calcularResultado(int valorPrimero, int valorSegundo, String operadorActual) {
-        int operacion;
-        switch (operadorActual) {
-            case "+":
-                operacion = valorPrimero + valorSegundo;
-                break;
-            case "-":
-                operacion = valorPrimero - valorSegundo;
-                break;
-            case "*":
-                operacion = valorPrimero * valorSegundo;
-                break;
-            case "/":
-                if (valorSegundo == 0){
-                    operacion = valorPrimero / valorSegundo;
-                    Toast.makeText(null, "No es posible esta operación", Toast.LENGTH_SHORT).show();
+            public int calcularResultado(int valorPrimero, int valorSegundo, String operadorActual) {
+                int operacion;
+                switch (operadorActual) {
+                    case "+":
+                        operacion = valorPrimero + valorSegundo;
+                        break;
+                    case "-":
+                        operacion = valorPrimero - valorSegundo;
+                        break;
+                    case "*":
+                        operacion = valorPrimero * valorSegundo;
+                        break;
+                    case "/":
+                        if (valorSegundo == 0){
+                            operacion = valorPrimero / valorSegundo;
+                            Toast.makeText(null, "No es posible esta operación", Toast.LENGTH_SHORT).show();
+                        }else{
+                            operacion = valorPrimero / valorSegundo;
+                        }
+                        if (valorPrimero==0 && operadorActual=="/" && valorSegundo==0){
+                            throw new ArithmeticException("División por cero no permitida");
+                        }
+                        break;
+                    case "%":
+                        if (valorPrimero != 0) {
+                            operacion = (valorPrimero * valorSegundo) / 100;
+                        } else {
+                            operacion = 0;
+                            Toast.makeText(getContext(), "No es posible esta operación", Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+
+                    default:
+                        operacion=0;
+                }
+                return operacion;
+            }
+
+            public double calcularResultadoD(double valorPrimeroD, double valorSegundoD, String operadorActual) {
+                double operacion;
+                switch (operadorActual) {
+                    case "+":
+                        operacion = valorPrimeroD + valorSegundoD;
+                        break;
+                    case "-":
+                        operacion = valorPrimeroD - valorSegundoD;
+                        break;
+                    case "*":
+                        operacion = valorPrimeroD * valorSegundoD;
+                        break;
+                    case "/":
+                        if (valorSegundoD == 0.0){
+                            operacion = valorPrimeroD / valorSegundoD;
+                            throw new ArithmeticException("División por cero no permitida");
+                        }else{
+                            operacion = valorPrimeroD / valorSegundoD;
+                        }
+                        break;
+                    case "%":
+                        if (valorPrimeroD != 0.0) {
+                            operacion = (valorPrimeroD * valorSegundoD) / 100;
+                        } else {
+                            operacion = 0.0;
+                            Toast.makeText(getContext(), "No es posible esta operación", Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+                    default:
+                        operacion = 0.0;
+                        break;
+                }
+                return operacion;
+            }
+
+            private void cambiarModoNoche(){
+                if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 }else{
-                    operacion = valorPrimero / valorSegundo;
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 }
-                if (valorPrimero==0 && operadorActual=="/" && valorSegundo==0){
-                    throw new ArithmeticException("División por cero no permitida");
-                }
-                break;
-            case "%":
-                if (valorSegundo == 0){
-                    int valores = valorPrimero * valorSegundo;
-                    operacion = valores/100;
-                    Toast.makeText(getContext(), "No es posible esta operación", Toast.LENGTH_SHORT).show();
+            }
+            private void ponerIndicadorModoNoche(){
+                if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+                    FirstFragment.imageNightMode.setImageResource(R.drawable.ic_sun);
                 }else{
-                    int valores = valorPrimero * valorSegundo;
-                    operacion = valores/100;
+                    FirstFragment.imageNightMode.setImageResource(R.drawable.ic_moon);
                 }
+            }
+        }
 
-            default:
-                operacion=0;
-        }
-        return operacion;
-    }
-
-    public double calcularResultadoD(double valorPrimeroD, double valorSegundoD, String operadorActual) {
-        double operacion;
-        switch (operadorActual) {
-            case "+":
-                operacion = valorPrimeroD + valorSegundoD;
-                break;
-            case "-":
-                operacion = valorPrimeroD - valorSegundoD;
-                break;
-            case "*":
-                operacion = valorPrimeroD * valorSegundoD;
-                break;
-            case "/":
-                if (valorSegundoD == 0.0){
-                    operacion = valorPrimeroD / valorSegundoD;
-                    throw new ArithmeticException("División por cero no permitida");
-                }else{
-                    operacion = valorPrimeroD / valorSegundoD;
-                }
-                break;
-            case "%":
-                if (valorSegundoD == 0){
-                    double valores = valorPrimeroD * valorSegundoD;
-                    operacion = valores/100;
-                    Toast.makeText(null, "No es posible esta operación", Toast.LENGTH_SHORT).show();
-                }else{
-                    double valores = valorPrimeroD * valorSegundoD;
-                    operacion = valores/100;
-                }
-            default:
-                operacion = 0.0;
-                break;
-        }
-        return operacion;
-    }
-
-    private void cambiarModoNoche(){
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }else{
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }
-    }
-    private void ponerIndicadorModoNoche(){
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
-            FirstFragment.imageNightMode.setImageResource(R.drawable.ic_sun);
-        }else{
-            FirstFragment.imageNightMode.setImageResource(R.drawable.ic_moon);
-        }
-    }
-}
