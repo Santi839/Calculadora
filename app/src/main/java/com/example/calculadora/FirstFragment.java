@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,11 +27,16 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
     View view;
     static AppCompatImageView imageNightMode;
     private String operadorActual = "";
-    private int valorPrimero = 0;
-    private int valorSegundo = 0;
+    private Number valorPrimero = 0;
+    private Number valorSegundo = 0;
 
-    private double valorPrimeroD = 0.0;
-    private double valorSegundoD = 0.0;
+    private static final String SUMA_OPERADOR = "+";
+    private static final String RESTA_OPERADOR = "-";
+    private static final String MULTI_OPERADOR = "*";
+    private static final String DIVI_OPERADOR = "/";
+    private static final String PORCE_OPERADOR = "%";
+    ImageView sol, luna ;
+
 
     private String mParam1;
     private String mParam2;
@@ -85,6 +91,7 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
             botonC = view.findViewById(R.id.botonC);
             botonPorcentaje = view.findViewById(R.id.botonPorcentaje);
             botonPunto = view.findViewById(R.id.botonPuntoDecimal);
+            imageNightMode = view.findViewById(R.id.imageNightMode);
             botonCero.setOnClickListener(this);
             botonDobleCero.setOnClickListener(this);
             botonUno.setOnClickListener(this);
@@ -106,11 +113,9 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
             botonC.setOnClickListener(this);
             botonPorcentaje.setOnClickListener(this);
             botonPunto.setOnClickListener(this);
-            if (imageNightMode != null) {
-                imageNightMode.setOnClickListener(this);
-            } else {
-                Log.e("FirstFragment", "imageNightMode es null");
-            }
+            imageNightMode.setOnClickListener(this);
+            imageNightMode.setImageResource(R.drawable.ic_sun);
+
             return view;
         }
             @Override
@@ -127,8 +132,6 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
                             textEcuation.setText("");
                             valorPrimero = 0;
                             valorSegundo = 0;
-                            valorPrimeroD = 0.0;
-                            valorSegundoD = 0.0;
                             operadorActual = "";
                             break;
                         case "00":
@@ -149,40 +152,18 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
                         case "%":
                         case "*":
                         case "/":
-                            if (datosPrevios.contains(".")) {
-                                valorPrimeroD = parseDouble(datosPrevios, 0.0);
-                                operadorActual = buttonText;
-                                textEcuation.setText(valorPrimeroD + " " + buttonText + " ");
-                                textInput.setText("0");
-                            } else {
-                                valorPrimero = parseInt(datosPrevios, 0);
-                                operadorActual = buttonText;
-                                textEcuation.setText(valorPrimero + " " + buttonText + " ");
-                                textInput.setText("0");
-                            }
+                            valorPrimero = convertirANumero(datosPrevios);
+                            operadorActual = buttonText;
+                            textEcuation.setText(valorPrimero + " " + buttonText + " ");
+                            textInput.setText("0");
                             break;
                         case "=":
-
-                            if (datosPrevios.contains(".") || valorPrimero != 0 || valorPrimeroD != 0.0) {
-                                String primerEntero = String.valueOf(valorPrimero);
-                                valorPrimeroD = parseDouble(primerEntero,0.0);
-                                valorSegundoD = parseDouble(datosPrevios, 0.0);
-                                textEcuation.setText(valorPrimeroD + " " + operadorActual + " " + valorSegundoD);
-                                double resultado = calcularResultadoD(valorPrimeroD, valorSegundoD, operadorActual);
-                                textInput.setText(resultado + "");
-                                valorPrimeroD = 0.0;
-                                valorSegundoD = 0.0;
-
-                            } else {
-                                valorSegundo = parseInt(datosPrevios, 0);
-                                textEcuation.setText(valorPrimero + " " + operadorActual + " " + valorSegundo);
-                                int resultado = calcularResultado(valorPrimero, valorSegundo, operadorActual);
-                                textInput.setText(resultado + "");
-                                valorPrimero = 0;
-                                valorSegundo = 0;
-
-                            }
-
+                            valorSegundo = convertirANumero(datosPrevios);
+                            textEcuation.setText(valorPrimero + " " + operadorActual + " " + valorSegundo);
+                            Number resultado = realizarOperacion(operadorActual, valorPrimero, valorSegundo);
+                            textInput.setText(resultado + "");
+                            valorPrimero = 0;
+                            valorSegundo = 0;
                             break;
                         case "C":
                             String entrada = textInput.getText().toString();
@@ -194,7 +175,7 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
                             }
                             break;
                         case "imageNightMode":
-                            cambiarModoNoche();
+                            //cambiarModoNoche();
                             ponerIndicadorModoNoche();
                             break;
 
@@ -232,81 +213,6 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
                 }
                 return entrada;
             }
-
-
-            public int calcularResultado(int valorPrimero, int valorSegundo, String operadorActual) {
-                int operacion;
-                switch (operadorActual) {
-                    case "+":
-                        operacion = valorPrimero + valorSegundo;
-                        break;
-                    case "-":
-                        operacion = valorPrimero - valorSegundo;
-                        break;
-                    case "*":
-                        operacion = valorPrimero * valorSegundo;
-                        break;
-                    case "/":
-                        if (valorSegundo == 0){
-                            operacion = valorPrimero / valorSegundo;
-                            Toast.makeText(null, "No es posible esta operación", Toast.LENGTH_SHORT).show();
-                        }else{
-                            operacion = valorPrimero / valorSegundo;
-                        }
-                        if (valorPrimero==0 && operadorActual=="/" && valorSegundo==0){
-                            throw new ArithmeticException("División por cero no permitida");
-                        }
-                        break;
-                    case "%":
-                        if (valorPrimero != 0) {
-                            operacion = (valorPrimero * valorSegundo) / 100;
-                        } else {
-                            operacion = 0;
-                            Toast.makeText(getContext(), "No es posible esta operación", Toast.LENGTH_SHORT).show();
-                        }
-                        break;
-
-                    default:
-                        operacion=0;
-                }
-                return operacion;
-            }
-
-            public double calcularResultadoD(double valorPrimeroD, double valorSegundoD, String operadorActual) {
-                double operacion;
-                switch (operadorActual) {
-                    case "+":
-                        operacion = valorPrimeroD + valorSegundoD;
-                        break;
-                    case "-":
-                        operacion = valorPrimeroD - valorSegundoD;
-                        break;
-                    case "*":
-                        operacion = valorPrimeroD * valorSegundoD;
-                        break;
-                    case "/":
-                        if (valorSegundoD == 0.0){
-                            operacion = valorPrimeroD / valorSegundoD;
-                            throw new ArithmeticException("División por cero no permitida");
-                        }else{
-                            operacion = valorPrimeroD / valorSegundoD;
-                        }
-                        break;
-                    case "%":
-                        if (valorPrimeroD != 0.0) {
-                            operacion = (valorPrimeroD * valorSegundoD) / 100;
-                        } else {
-                            operacion = 0.0;
-                            Toast.makeText(getContext(), "No es posible esta operación", Toast.LENGTH_SHORT).show();
-                        }
-                        break;
-                    default:
-                        operacion = 0.0;
-                        break;
-                }
-                return operacion;
-            }
-
             private void cambiarModoNoche(){
                 if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
@@ -314,12 +220,52 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 }
             }
+
             private void ponerIndicadorModoNoche(){
-                if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
-                    FirstFragment.imageNightMode.setImageResource(R.drawable.ic_sun);
+                /*
+                if( imageNightMode.getDrawable().getAlpha() == R.drawable.ic_moon ){
+                    imageNightMode.setImageResource(R.drawable.ic_sun);
                 }else{
-                    FirstFragment.imageNightMode.setImageResource(R.drawable.ic_moon);
+                    imageNightMode.setImageResource(R.drawable.ic_moon);
                 }
+                */
+                //imageNightMode.setImageDrawable(ic_moon.getDrawable());
             }
+
+    public static Number realizarOperacion(String operador, Number valorPrimero, Number valorSegundo) {
+        double resultado = 0.0;
+        if (SUMA_OPERADOR.equals(operador)) {
+            resultado = valorPrimero.doubleValue() + valorSegundo.doubleValue();
+        } else if (RESTA_OPERADOR.equals(operador)) {
+            resultado = valorPrimero.doubleValue() - valorSegundo.doubleValue();
+        } else if (MULTI_OPERADOR.equals(operador)) {
+            resultado = valorPrimero.doubleValue() * valorSegundo.doubleValue();
+        } else if (DIVI_OPERADOR.equals(operador)) {
+            validarDivision(valorSegundo);
+            resultado = valorPrimero.doubleValue() / valorSegundo.doubleValue();
+        } else if (PORCE_OPERADOR.equals(operador)){
+            resultado = (valorPrimero.doubleValue() * valorSegundo.doubleValue()) / 100.0;
         }
+        if (Double.class.equals(valorPrimero.getClass()) || Double.class.equals(valorSegundo.getClass())) {
+            return resultado;
+        } else {
+            return (int) resultado;
+        }
+    }
+    public static Number convertirANumero(String numero) {
+        if (numero.contains(".")) {
+            return parseDouble(numero, 0.0);
+        } else {
+            return parseInt(numero, 0);
+        }
+    }
+    public static void validarDivision (Number valorSegundo){
+        Number cero = 0;
+        if (cero.equals(valorSegundo)){
+            throw new ArithmeticException("División por cero no permitida");
+        }
+    }
+
+
+}
 
