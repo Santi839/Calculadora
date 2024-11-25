@@ -21,5 +21,23 @@
     <string name="mas_menos">\u00B1</string>
     <string name="porcentaje">\u0025</string>
     <string name="all_clear">AC</string>
-    
+    <string name="cuadrado_area">Área de un cuadrado</string>
+    <string name="circulo_area">Área de un circulo</string>
+    <string name="paralelogramo_area">Área de un paralelogramo</string>
+    <string name="rectangulo_area">Área de un rectangulo</string>
+    <string name="triangulo_area">Área de un triangulo</string>
+    <string name="trapecio_area">Área de un trapecio</string>
+    <string name="rombo_area">Área de un rombo</string>
+
+    <string name="cubo_volumen">Volúmen de un cubo</string>
+    <string name="prisma_rectangular_volumen">Volúmen de un prisma rectangular</string>
+    <string name="cilindro_volumen">Volúmen de un cilindro</string>
+    <string name="esfera_volumen">Volúmen de un esfera</string>
+    <string name="cono_volumen">Volúmen de un cono</string>
+    <string name="piramide_volumen">Volúmen de un pirámide</string>
+
+        <!-- Agrega más descripciones según sea necesario -->
+
+
+
 </resources>

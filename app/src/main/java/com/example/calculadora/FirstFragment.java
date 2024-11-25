@@ -32,8 +32,8 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
 
     private static final String SUMA_OPERADOR = "+";
     private static final String RESTA_OPERADOR = "-";
-    private static final String MULTI_OPERADOR = "*";
-    private static final String DIVI_OPERADOR = "/";
+    private static final String MULTI_OPERADOR = "x";
+    private static final String DIVI_OPERADOR = "÷";
     private static final String PORCE_OPERADOR = "%";
     ImageView sol, luna ;
 
@@ -150,8 +150,8 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
                         case "+":
                         case "-":
                         case "%":
-                        case "*":
-                        case "/":
+                        case "x":
+                        case "÷":
                             valorPrimero = convertirANumero(datosPrevios);
                             operadorActual = buttonText;
                             textEcuation.setText(valorPrimero + " " + buttonText + " ");

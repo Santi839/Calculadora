@@ -13,16 +13,16 @@
     <color name="green_light">#3a9188</color>
     <color name="green_light_2">#b8e1dd</color>
 
-    <color name="display_Backgruond">#E2E9EE</color>
-    <color name="primary_Text">#323233</color>
-    <color name="secondary_Text">#74797C</color>
-    <color name="action_Text">#48C1B5</color>
+
+    <color name="display_Backgruond">#0B2B3C</color>
+    <color name="primary_Text">#FFFEFE</color>
+    <color name="secondary_Text">#9DA6AE</color>
+    <color name="action_Text">#33ACA1</color>
     <color name="all_Clear_Text">#EA6B6A</color>
     <color name="equal_Button_Background">#36B8AB</color>
     <color name="equal_Button_Text">#FFFEFE</color>
-    <color name="buttons_Background">#F5F6F8</color>
-    <color name="divider">#E2E9EE</color>
-    <color name="status_Bar">#C3C7CB</color>
-
+    <color name="buttons_Background">#0B2842</color>
+    <color name="divider">#717D88</color>
+    <color name="status_Bar">#0B2B3C</color>
 
 </resources>

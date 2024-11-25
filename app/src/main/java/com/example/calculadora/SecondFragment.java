@@ -62,3 +62,13 @@ public class SecondFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_second, container, false);
     }
 }
+
+/*
+
+xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".SecondFragment"
+ */

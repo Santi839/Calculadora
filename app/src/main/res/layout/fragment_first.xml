@@ -101,7 +101,7 @@
             <Button
                 android:id="@+id/botonDivision"
                 style="@style/ActionButton"
-                android:text="/"/>
+                android:text="@string/division"/>
 
         </TableRow>
 
@@ -125,7 +125,7 @@
             <Button
                 android:id="@+id/botonMultiplicacion"
                 style="@style/ActionButton"
-                android:text="*"/>
+                android:text="x"/>
 
         </TableRow>
 
