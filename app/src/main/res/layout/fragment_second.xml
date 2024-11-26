@@ -17,7 +17,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="0dp"
             android:fontFamily="sans-serif-black"
-            android:textColor="@color/green_normal"
+            android:textColor="@color/green_light"
             android:textSize="40sp"
             android:textAlignment="center"
             android:text="Fórmulas Áreas">
@@ -30,7 +30,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-black"
-            android:textColor="@color/green_normal"
+            android:textColor="@color/green_light"
             android:textSize="20sp"
             android:textAlignment="center"
             android:text="Área Cuadrado">
@@ -53,7 +53,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-black"
-            android:textColor="@color/green_normal"
+            android:textColor="@color/green_light"
             android:textSize="20sp"
             android:textAlignment="center"
             android:text="Área Círculo">
@@ -74,7 +74,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-black"
-            android:textColor="@color/green_normal"
+            android:textColor="@color/green_light"
             android:textSize="20sp"
             android:textAlignment="center"
             android:text="Área Triángulo">
@@ -95,7 +95,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-black"
-            android:textColor="@color/green_normal"
+            android:textColor="@color/green_light"
             android:textSize="20sp"
             android:textAlignment="center"
             android:text="Área Trapecio">
@@ -116,7 +116,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-black"
-            android:textColor="@color/green_normal"
+            android:textColor="@color/green_light"
             android:textSize="20sp"
             android:textAlignment="center"
             android:text="Área Rombo">
@@ -137,7 +137,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-black"
-            android:textColor="@color/green_normal"
+            android:textColor="@color/green_light"
             android:textSize="20sp"
             android:textAlignment="center"
             android:text="Área Rectángulo">

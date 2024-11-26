@@ -17,7 +17,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="0dp"
             android:fontFamily="sans-serif-black"
-            android:textColor="@color/green_normal"
+            android:textColor="@color/green_light"
             android:textSize="40sp"
             android:textAlignment="center"
             android:text="Fórmulas Volúmenes">
@@ -30,7 +30,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-black"
-            android:textColor="@color/green_normal"
+            android:textColor="@color/green_light"
             android:textSize="20sp"
             android:textAlignment="center"
             android:text="Volúmen Cubo">
@@ -53,7 +53,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-black"
-            android:textColor="@color/green_normal"
+            android:textColor="@color/green_light"
             android:textSize="20sp"
             android:textAlignment="center"
             android:text="Volúmen Esfera">
@@ -74,7 +74,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-black"
-            android:textColor="@color/green_normal"
+            android:textColor="@color/green_light"
             android:textSize="20sp"
             android:textAlignment="center"
             android:text="Prisma Rectangular (paralelepípedo)">
@@ -95,7 +95,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-black"
-            android:textColor="@color/green_normal"
+            android:textColor="@color/green_light"
             android:textSize="20sp"
             android:textAlignment="center"
             android:text="Volúmen Cilindro">
@@ -116,7 +116,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-black"
-            android:textColor="@color/green_normal"
+            android:textColor="@color/green_light"
             android:textSize="20sp"
             android:textAlignment="center"
             android:text="Volúmen Cono">
@@ -137,7 +137,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-black"
-            android:textColor="@color/green_normal"
+            android:textColor="@color/green_light"
             android:textSize="20sp"
             android:textAlignment="center"
             android:text="Volúmen Pirámide">
