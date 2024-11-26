@@ -55,12 +55,11 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+        //ponerIndicadorModoNoche();
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
 
         }
 
@@ -114,12 +113,17 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
             botonPorcentaje.setOnClickListener(this);
             botonPunto.setOnClickListener(this);
             imageNightMode.setOnClickListener(this);
-            imageNightMode.setImageResource(R.drawable.ic_sun);
+            ponerIndicadorModoNoche();
 
             return view;
         }
             @Override
             public void onClick(View view) {
+                if (view == imageNightMode) {
+                    cambiarModoNoche();
+
+                    return;
+                }
                 Button button = (Button) view;
                 String buttonText = button.getText().toString();
                 String datosPrevios = textInput.getText().toString();
@@ -174,11 +178,11 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
                                 textInput.setText(datosPrevios + buttonText);
                             }
                             break;
+                        /*
                         case "imageNightMode":
-                            //cambiarModoNoche();
-                            ponerIndicadorModoNoche();
+                            cambiarModoNoche();
                             break;
-
+                        */
                     }
                 }catch (ArithmeticException e) {
                     Toast.makeText(getContext(), "Operación no permitida: " + e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -219,18 +223,17 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
                 }else{
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 }
+                ponerIndicadorModoNoche();
             }
 
-            private void ponerIndicadorModoNoche(){
-                /*
-                if( imageNightMode.getDrawable().getAlpha() == R.drawable.ic_moon ){
-                    imageNightMode.setImageResource(R.drawable.ic_sun);
-                }else{
-                    imageNightMode.setImageResource(R.drawable.ic_moon);
-                }
-                */
-                //imageNightMode.setImageDrawable(ic_moon.getDrawable());
-            }
+    private void ponerIndicadorModoNoche() {
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            imageNightMode.setImageResource(R.drawable.ic_sun);
+        } else {
+            imageNightMode.setImageResource(R.drawable.ic_moon);
+        }
+    }
+
 
     public static Number realizarOperacion(String operador, Number valorPrimero, Number valorSegundo) {
         double resultado = 0.0;
